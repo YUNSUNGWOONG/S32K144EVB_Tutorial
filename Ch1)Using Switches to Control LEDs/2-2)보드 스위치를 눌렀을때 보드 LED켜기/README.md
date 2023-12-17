@@ -84,9 +84,16 @@
 
 #### (5) Input 설정
 
-:heavy_check_mark:
+:heavy_check_mark:GPIO로 사용되는 핀의 Input/Output 설정을 한다. Switch 신호를 입력받아야 하기 때문에 Input으로 설정해야 한다.
+
+<img src="./../../images/image-20231217164845630.png" alt="image-20231217164845630" style="zoom:150%;" />
 
 
 
+### :three:프로그래밍
 
+1. SW2가 연결된 핀에 대한 IO 설정을 한다
+2. SW2가 연결된 핀에 대한 GPIO 설정(Input 설정)을 한다.
+3. 동작에 따라 'main' 함수를 구현한다.
 
+![image-20231218011801128](./../../images/image-20231218011801128.png)
