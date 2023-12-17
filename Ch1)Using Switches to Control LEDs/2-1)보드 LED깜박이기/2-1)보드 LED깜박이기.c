@@ -3,11 +3,10 @@
 
 /*
 매크로 상수를 정의하는 부분으로,
-PTD0과 PTD12의 상수를 정의합니다.
+PTD0의 상수를 정의합니다.
 이를 통해 포트D의 다양한 핀을 이용하게 됩니다.
 */
 #define PTD0 0
-#define PTC12 12
 
 void PORT_init()
 {
@@ -18,7 +17,6 @@ void PORT_init()
     -아래 코드는 포트D의 클럭게이트를 활성화하는 역할을 합니다. 이렇게 하면 해당포트의 기능을 사용합니다.
     -클럭설정은 마이크로컨트롤러의 동작 및 정확성에 중요한 영향을 미치므로 주의깊게 설정해야 합니다.
     */
-    PCC->PCCn[PCC_PORTC_INDEX] = PCC_PCCn_CGC_MASK;
     PCC->PCCn[PCC_PORTD_INDEX] = PCC_PCCn_CGC_MASK;
 
     /*
@@ -32,18 +30,17 @@ void PORT_init()
     출력하게 됩니다.
     */
     PTD->PDDR |= 1 << PTD0;
-    PTC->PDDR &= ~((unsigned int)1 << PTC12);
 
     /*
     <GPIO Setting>
     -범용입출력, GPIO는 일반적인 입출력포트를 나타냅니다.
-    -GPIO세팅은 특정핀을 범용입출력으로 컴포즈하는 과정으로, 이렇게 설정된 핀으로 입출력 configuration을 처리할 수
-    있습니다. -아래 첫번째 코드는 PTD0핀을 GPIO핀으로 설정되는 것을 나타냅니다. -두번째 코드는 PTC12핀을 GPIO핀으로
-    설정되는 것을 나타냅니다. -GPIO핀 설정은 주로 디지털 신호를 다룰때 사용되며, 특정 입출력 장치와 상호작용을 할때
+    -GPIO세팅은 특정핀을 범용입출력으로 컴포즈하는 과정으로, 이렇게 설정된 핀으로 입출력
+    configuration을 처리할 수 있습니다.
+    -아래 첫번째 코드는 PTD0핀을 GPIO핀으로 설정되는 것을 나타냅니다.
+    -GPIO핀 설정은 주로 디지털 신호를 다룰때 사용되며, 특정 입출력 장치와 상호작용을 할때
     필요합니다.
     */
     PORTD->PCR[0] = PORT_PCR_MUX(1);
-    PORTD->PCR[12] = PORT_PCR_MUX(1);
 }
 
 int main()
@@ -52,33 +49,9 @@ int main()
 
     while (1)
     {
-        /*
-        포트C 12번 핀의 입력상태를
-        */
-        if (!(PTC->PDIR & (1 << PTC12)))
-        {
-            PTD->PSOR |= 1 << PTD0; // 출력핀(0)-TURN_ON
-        }
-        else
-        {
-            PTD->PCOR |= 1 << PTD0; // 출력핀(0)-TURN_OFF
-        }
-    }
-}
-
-
-
-#include "device_registers.h"
-#define PTD0 0
-int main(void)
-{
-    PCC->PCCn[PCC_PORTC_INDEX] = PCC_PCCn_CGC_MASK;
-    PORTD->PCR[0] = PORT_PCR_MUX(1);
-    PTD->PDDR |= 1 << PTD0;
-    for(;;)
-    {
         int cycles = 720000;
-        while(cycles--);
-        PTD-> PTOR |= 1<<PTD0;
+        while (cycles--)
+            ;
+        PTD->PTOR |= 1 << PTD0;
     }
 }

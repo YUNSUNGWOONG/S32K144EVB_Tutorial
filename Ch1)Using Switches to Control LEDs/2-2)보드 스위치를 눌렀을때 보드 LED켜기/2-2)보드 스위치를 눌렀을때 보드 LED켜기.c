@@ -65,20 +65,3 @@ int main()
         }
     }
 }
-
-
-
-#include "device_registers.h"
-#define PTD0 0
-int main(void)
-{
-    PCC->PCCn[PCC_PORTC_INDEX] = PCC_PCCn_CGC_MASK;
-    PORTD->PCR[0] = PORT_PCR_MUX(1);
-    PTD->PDDR |= 1 << PTD0;
-    for(;;)
-    {
-        int cycles = 720000;
-        while(cycles--);
-        PTD-> PTOR |= 1<<PTD0;
-    }
-}
