@@ -6,7 +6,7 @@ LCD 디스플레이 문자 출력 실험
 
 결과>
 
-<img src="./../../../S32K144EVB_TermProject/images/image-20231219023849361.png" alt="image-20231219023849361" style="zoom:150%;" />
+<img src="./../../images/image-20231219030006195.png" alt="image-20231219030006195"  />
 
 
 
@@ -20,4 +20,4 @@ LCD 디스플레이 문자 출력 실험
 
 결과>
 
-<img src="./../../../S32K144EVB_TermProject/images/image-20231219023919061.png" alt="image-20231219023919061" style="zoom:150%;" />
+![image-20231219030027461](./../../images/image-20231219030027461.png)
