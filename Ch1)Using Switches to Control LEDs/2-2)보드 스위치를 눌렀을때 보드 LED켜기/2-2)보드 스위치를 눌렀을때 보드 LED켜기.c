@@ -43,7 +43,7 @@ void PORT_init()
     필요합니다.
     */
     PORTD->PCR[0] = PORT_PCR_MUX(1);
-    PORTD->PCR[12] = PORT_PCR_MUX(1);
+    PORTC->PCR[12] = PORT_PCR_MUX(1);
 }
 
 int main()
